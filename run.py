@@ -61,7 +61,17 @@ if __name__ == "__main__":
     # column = 1
     # if (row * 10) + 1 in board:
     #     print(111)
+
     SIZE = check_all_inputs(True) # 5 - 9
     
     player_board = Board(SIZE)
+    player_board.board[0][1] = 'X'
     player_board.print_board()
+
+    original_list = [2]
+    digit_list = [int(digit)-1 for digit in str(original_list[0])]
+    if len(digit_list) == 1:
+        swap = digit_list[0]
+        digit_list[0] = 0
+        digit_list.append(swap)
+    print(digit_list)
