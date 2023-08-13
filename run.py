@@ -22,7 +22,6 @@ class Board:
 
 
     def where_ships(self):
-        print(self.ships)
         for ship in self.ships:
             self.board[ship[0]][ship[1]] = "."
         self.print_board()
@@ -95,6 +94,8 @@ class Player:
 
     def move(self):
         check = False
+        prev_points = self.points
+        new_move = []
         while check == False:
             print("What row?")
             row = check_all_inputs(size=self.board.size) - 1
@@ -103,33 +104,36 @@ class Player:
             if [row,column] in self.moves:
                 print("Take some memory pills, it's already been that move.")
             else:
-                self.moves.append([row,column])
+                new_move = [row,column]
+                self.moves.append(new_move)
                 check = True
         self.points += self.apponent_board.actions_on_board(row,column)
-        print(f"{self.name} guessed: {self.show_points()}")
+        print(f"{self.name} guessed: {[new_move[0]+1,new_move[1]+1]}")
         if prev_points == self.points:
-            print("Computer miss")
+            print(f"{self.name} miss")
         else:
-            print("Computer got you!")
+            print(f"{self.name} try to not lose")
 
 class Computer(Player):
     def move(self):
         check = False
         prev_points = self.points
+        new_move = []
         while check == False:
             row = randrange(self.board.size)
             column = randrange(self.board.size)
             if [row,column] in self.moves:
                 continue
             else:
-                self.moves.append([row,column])
+                new_move = [row,column]
+                self.moves.append(new_move)
                 check = True
         self.points += self.apponent_board.actions_on_board(row,column)
-        print(f"Computer guessed: {self.show_points()}")
+        print(f"{self.name} guessed: {[new_move[0]+1,new_move[1]+1]}")
         if prev_points == self.points:
-            print("Computer miss")
+            print(f"{self.name} miss")
         else:
-            print("Computer got you!")
+            print(f"{self.name} got you!")
                    
 
 
@@ -158,7 +162,11 @@ Here is your board:''')
     the_end = False
     while the_end == False:
         player.move()
+        player.show_board()
+        player.show_points()
         computer.move()
+        computer.show_points()
+        computer.show_board()
         if player.show_points() == SIZE:
             print("WHAT??? It's mistake... Okay SEE you next time!!!")
             the_end = True
