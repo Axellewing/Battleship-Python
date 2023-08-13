@@ -1,4 +1,5 @@
 from random import randrange
+import random
 
 class Board:
     board = []
@@ -11,6 +12,12 @@ class Board:
 
     def clean_board(self):
         self.board = [['_' for _ in range(self.size)] for _ in range(self.size)]
+
+    def actions_on_board(self,row,column):
+        if [row,column] in self.ships:
+            self.board[row][column] = "X"
+        else:
+            self.board[row][column] = "O"
 
 
     def where_ships(self):
@@ -32,7 +39,6 @@ class Board:
                 if boat_position in boats:
                     boat_position = [-1]
             boats.append(boat_position)
-            # formula of positions (row*10)+column
         return boats
 
 
@@ -69,15 +75,11 @@ def check_all_inputs(size_check = False, size = 0):
 
 
 if __name__ == "__main__":
-    # board = [1,34,32]
-    # row = 0
-    # column = 1
-    # if (row * 10) + 1 in board:
-    #     print(111)
-
+    print(random.__version__)
     SIZE = check_all_inputs(True) # 5 - 9
     
     player_board = Board(SIZE)
-    # player_board.board[0][1] = 'X'
     player_board.where_ships()
+
+
 
