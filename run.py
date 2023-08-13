@@ -84,8 +84,11 @@ class Player:
     def add_apponent_board(self,apponent_board):
         self.apponent_board = apponent_board
 
-    def show_board(self):
-        self.board.print_board()
+    def show_board(self, what_to_see = 0):
+        if what_to_see == 0:
+            self.board.print_board()
+        else:
+            self.board.where_ships()
 
     def show_points(self):
         print(f"{self.name}: {self.points}")
@@ -103,6 +106,11 @@ class Player:
                 self.moves.append([row,column])
                 check = True
         self.points += self.apponent_board.actions_on_board(row,column)
+        print(f"{self.name} guessed: {self.show_points()}")
+        if prev_points == self.points:
+            print("Computer miss")
+        else:
+            print("Computer got you!")
 
 class Computer(Player):
     def move(self):
@@ -117,6 +125,7 @@ class Computer(Player):
                 self.moves.append([row,column])
                 check = True
         self.points += self.apponent_board.actions_on_board(row,column)
+        print(f"Computer guessed: {self.show_points()}")
         if prev_points == self.points:
             print("Computer miss")
         else:
@@ -142,6 +151,20 @@ Here is your board:''')
     computer = Computer("WINNER-Comp",SIZE)
     computer.add_apponent_board(player.board)
     player.add_apponent_board(computer.board)
+    player.show_board(what_to_see=1)
+    print("Computer board:")
+    computer.show_board()
+
+    the_end = False
+    while the_end == False:
+        player.move()
+        computer.move()
+        if player.show_points() == SIZE:
+            print("WHAT??? It's mistake... Okay SEE you next time!!!")
+            the_end = True
+        if computer.show_points() == SIZE:
+            print("Exactly what I said!!!")
+            the_end = True
     
 
 
