@@ -54,6 +54,15 @@ class Board:
             print(row)
 
 
+class Player:
+    def __init__(self, name, size):
+        self.name = name
+        self.board = Board(size)
+    
+    
+
+        
+
 def check_all_inputs(size_check = False, size = 0):
     ok = "n"
 
@@ -80,6 +89,8 @@ if __name__ == "__main__":
     
     player_board = Board(SIZE)
     player_board.where_ships()
+
+
 
 
 
