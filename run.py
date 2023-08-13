@@ -1,5 +1,4 @@
 from random import randrange
-import random
 
 class Board:
     board = []
@@ -53,16 +52,6 @@ class Board:
                 row += f"{self.board[x][y]} "
             print(row)
 
-
-class Player:
-    def __init__(self, name, size):
-        self.name = name
-        self.board = Board(size)
-    
-    
-
-        
-
 def check_all_inputs(size_check = False, size = 0):
     ok = "n"
 
@@ -80,15 +69,45 @@ def check_all_inputs(size_check = False, size = 0):
         except:
             print("did you see the description, or not :)")
 
-    return check           
+    return check
+
+class Player:
+    moves = []
+    apponent_board = []
+    def __init__(self, name, size):
+        self.name = name
+        self.board = Board(size)
+    
+    def add_apponent_board(self,apponent_board):
+        self.apponent_board = apponent_board
+
+    def show_board(self):
+        self.board.print_board()
+
+    def move(self):
+        check = False
+        while check == False:
+            print("What row?")
+            row = check_all_inputs(size=self.board.size) - 1
+            print("And column is?")
+            column = check_all_inputs(size=self.board.size) - 1
+            if [row,column] in self.moves:
+                print("Take some memory pills, it's already been that move.")
+            else:
+                self.moves.append([row,column])
+                check = True
+        self.apponent_board.actions_on_board(row,column)
+
+        
+
+                   
 
 
 if __name__ == "__main__":
-    print(random.__version__)
+    # print(random.__version__)
     SIZE = check_all_inputs(True) # 5 - 9
     
-    player_board = Board(SIZE)
-    player_board.where_ships()
+    
 
 
 
