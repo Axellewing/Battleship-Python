@@ -1,10 +1,23 @@
+from random import randrange
+
 class Board:
     board = []
-
 
     def __init__(self, size):
         self.board = [['_' for _ in range(size)] for _ in range(size)]
         self.size = size
+        self.ships = self.boat_positions()
+
+
+    def boat_positions(self):
+        new_size = self.size**self.size
+        boats = []
+        for boat_number in range(self.size):
+            boat = -1
+            while boat == -1:
+                position = randrange(new_size)
+                print(position)
+        return []
 
 
     def print_board(self):
@@ -21,11 +34,11 @@ class Board:
 
 def check_all_inputs(size_check = False, size = 0):
     ok = "n"
-    
+
     while ok == "n":
         try:
             check = int(input())
-            if size_check and check > 0 and check < 10:
+            if size_check and check > 4 and check < 10:
                 ok = "y"
             elif size_check and check >= 10:
                 print("The description says no more than 10, GOT IT")
@@ -40,7 +53,7 @@ def check_all_inputs(size_check = False, size = 0):
 
 
 if __name__ == "__main__":
-    SIZE = check_all_inputs(True)
-    # 5 - 9
+    SIZE = check_all_inputs(True) # 5 - 9
+    
     player_board = Board(SIZE)
     player_board.print_board()
