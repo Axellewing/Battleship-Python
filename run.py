@@ -106,7 +106,16 @@ class Player:
 
 class Computer(Player):
     def move(self):
-        pass
+        check = False
+        while check == False:
+            row = randrange(self.board.size)
+            column = randrange(self.board.size)
+            if [row,column] in self.moves:
+                print("Take some memory pills, it's already been that move.")
+            else:
+                self.moves.append([row,column])
+                check = True
+        self.points += self.apponent_board.actions_on_board(row,column)
                    
 
 
@@ -115,11 +124,11 @@ if __name__ == "__main__":
     SIZE = check_all_inputs(True) # 5 - 9
     
     player = Player("ass",SIZE)
-    player1 = Player("2",SIZE)
-    player.add_apponent_board(player1.board)
-    player.move()
-    player1.show_board()
-    player.show_board()
+    # player1 = Player("2",SIZE)
+    # player.add_apponent_board(player1.board)
+    # player.move()
+    # player1.show_board()
+    # player.show_board()
     
     
 
