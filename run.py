@@ -63,7 +63,7 @@ def check_all_inputs(size_check = False, size = 0):
             if size_check and check > 4 and check < 10:
                 ok = "y"
             elif size_check and check >= 10:
-                print("The description says no more than 10, GOT IT")
+                print("The description says from 5 to 9, GOT IT")
             elif check > 0 and check <= size:
                 ok = "y"
             else: 
@@ -125,20 +125,25 @@ class Computer(Player):
 
 
 if __name__ == "__main__":
-    # print(random.__version__)
+    print('''--------------------------------
+  Welcome to my 
+  ULTIMATE BATTLESHIPS!!!
+  This game isn't made to love you,
+  so don't give up !)
+--------------------------------
+  What size of board do you want from 5 to 9?''')
     SIZE = check_all_inputs(True) # 5 - 9
-    
-    player = Player("ass",SIZE)
-    # player1 = Player("2",SIZE)
-    # player.add_apponent_board(player1.board)
-    # player.move()
-    # player1.show_board()
-    # player.show_board()
-    computer = Computer("Comp",SIZE)
+    print("What is your name LOSER?")
+    name = input()
+    print(f'''All right, now you and computer have {SIZE} ships.
+I'm sure you'll lose.
+Here is your board:''')
+    player = Player(name,SIZE)
+    computer = Computer("WINNER-Comp",SIZE)
     computer.add_apponent_board(player.board)
-    computer.move()
-    computer.show_board()
-    player.show_board()
+    player.add_apponent_board(computer.board)
+    
+
 
     
     
