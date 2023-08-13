@@ -11,6 +11,14 @@ class Board:
 
     def clean_board(self):
         self.board = [['_' for _ in range(self.size)] for _ in range(self.size)]
+
+
+    def where_ships(self):
+        print(self.ships)
+        for ship in self.ships:
+            self.board[ship[0]][ship[1]] = "."
+        self.print_board()
+        self.clean_board()
         
 
     def boat_positions(self):
@@ -72,3 +80,4 @@ if __name__ == "__main__":
     player_board = Board(SIZE)
     # player_board.board[0][1] = 'X'
     player_board.where_ships()
+
