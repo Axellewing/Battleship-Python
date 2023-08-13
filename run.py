@@ -10,14 +10,17 @@ class Board:
 
 
     def boat_positions(self):
-        new_size = self.size**self.size
+        new_size = self.size*self.size
         boats = []
         for boat_number in range(self.size):
-            boat = -1
-            while boat == -1:
-                position = randrange(new_size)
-                print(position)
-        return []
+            boat_position = -1
+            while boat_position == -1:
+                boat_position = randrange(new_size)
+                if boat_position in boats:
+                    boat_position = -1
+            boats.append(boat_position)
+            # formula of positions (row*10)+column
+        return boats
 
 
     def print_board(self):
@@ -53,6 +56,11 @@ def check_all_inputs(size_check = False, size = 0):
 
 
 if __name__ == "__main__":
+    # board = [1,34,32]
+    # row = 0
+    # column = 1
+    # if (row * 10) + 1 in board:
+    #     print(111)
     SIZE = check_all_inputs(True) # 5 - 9
     
     player_board = Board(SIZE)
