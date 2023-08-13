@@ -107,15 +107,20 @@ class Player:
 class Computer(Player):
     def move(self):
         check = False
+        prev_points = self.points
         while check == False:
             row = randrange(self.board.size)
             column = randrange(self.board.size)
             if [row,column] in self.moves:
-                print("Take some memory pills, it's already been that move.")
+                continue
             else:
                 self.moves.append([row,column])
                 check = True
         self.points += self.apponent_board.actions_on_board(row,column)
+        if prev_points == self.points:
+            print("Computer miss")
+        else:
+            print("Computer got you!")
                    
 
 
@@ -129,6 +134,12 @@ if __name__ == "__main__":
     # player.move()
     # player1.show_board()
     # player.show_board()
+    computer = Computer("Comp",SIZE)
+    computer.add_apponent_board(player.board)
+    computer.move()
+    computer.show_board()
+    player.show_board()
+
     
     
 
