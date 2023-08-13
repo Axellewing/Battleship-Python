@@ -4,20 +4,25 @@ class Board:
     board = []
 
     def __init__(self, size):
-        self.board = [['_' for _ in range(size)] for _ in range(size)]
         self.size = size
+        self.clean_board()
         self.ships = self.boat_positions()
 
 
+    def clean_board(self):
+        self.board = [['_' for _ in range(self.size)] for _ in range(self.size)]
+        
+
     def boat_positions(self):
-        new_size = self.size*self.size
         boats = []
         for boat_number in range(self.size):
-            boat_position = -1
-            while boat_position == -1:
-                boat_position = randrange(new_size)
+            boat_position = [-1]
+            while boat_position[0] == -1:
+                random_row = randrange(0, self.size)
+                random_column = randrange(0, self.size)
+                boat_position = [random_row,random_column]
                 if boat_position in boats:
-                    boat_position = -1
+                    boat_position = [-1]
             boats.append(boat_position)
             # formula of positions (row*10)+column
         return boats
@@ -65,13 +70,5 @@ if __name__ == "__main__":
     SIZE = check_all_inputs(True) # 5 - 9
     
     player_board = Board(SIZE)
-    player_board.board[0][1] = 'X'
-    player_board.print_board()
-
-    original_list = [2]
-    digit_list = [int(digit)-1 for digit in str(original_list[0])]
-    if len(digit_list) == 1:
-        swap = digit_list[0]
-        digit_list[0] = 0
-        digit_list.append(swap)
-    print(digit_list)
+    # player_board.board[0][1] = 'X'
+    player_board.where_ships()
