@@ -107,6 +107,13 @@ if __name__ == "__main__":
     # print(random.__version__)
     SIZE = check_all_inputs(True) # 5 - 9
     
+    player = Player("ass",SIZE)
+    player1 = Player("2",SIZE)
+    player.add_apponent_board(player1.board)
+    player.move()
+    player1.show_board()
+    player.show_board()
+    
     
 
 
