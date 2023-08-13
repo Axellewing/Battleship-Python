@@ -15,8 +15,10 @@ class Board:
     def actions_on_board(self,row,column):
         if [row,column] in self.ships:
             self.board[row][column] = "X"
+            return 1
         else:
             self.board[row][column] = "O"
+            return 0
 
 
     def where_ships(self):
@@ -74,6 +76,7 @@ def check_all_inputs(size_check = False, size = 0):
 class Player:
     moves = []
     apponent_board = []
+    points = 0
     def __init__(self, name, size):
         self.name = name
         self.board = Board(size)
@@ -83,6 +86,9 @@ class Player:
 
     def show_board(self):
         self.board.print_board()
+
+    def show_points(self):
+        print(f"{self.name}: {self.points}")
 
     def move(self):
         check = False
@@ -96,10 +102,11 @@ class Player:
             else:
                 self.moves.append([row,column])
                 check = True
-        self.apponent_board.actions_on_board(row,column)
+        self.points += self.apponent_board.actions_on_board(row,column)
 
-        
-
+class Computer(Player):
+    def move(self):
+        pass
                    
 
 
