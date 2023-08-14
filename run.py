@@ -92,6 +92,12 @@ class Player:
     def show_points(self):
         print(f"{self.name}: {self.points}")
 
+    def check_moves(self,row,column):
+        for move in self.moves:
+            if row == move[0] and column == move[1]:
+                return False
+        return True
+
     def move(self):
         check = False
         prev_points = self.points
@@ -149,6 +155,7 @@ if __name__ == "__main__":
     print("What is your name LOSER?")
     name = input()
     print(f'''All right, now you and computer have {SIZE} ships.
+Amd you can tipe only 1 - {SIZE} numbers.
 I'm sure you'll lose.
 Here is your board:''')
     player = Player(name,SIZE)
