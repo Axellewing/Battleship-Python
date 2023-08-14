@@ -35,7 +35,7 @@ Hits are marked by `X` and mistakes indicated by `O`.
     - You must enter numbers 
     - You cannot enter the same guess twice
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](photo/third.png)
 
 - Data maintained in class instances
 
