@@ -182,15 +182,15 @@ Here is your board:''')
 
     the_end = False
     while the_end == False:
+        player.show_points()
+        computer.show_points()
         player.move()
         player.show_board()
-        player.show_points()
         if player.points == SIZE:
             print("WHAT??? It's mistake... Okay SEE you next time!!!")
             the_end = True
             break
         computer.move()
-        computer.show_points()
         computer.show_board()
         if computer.points == SIZE:
             print("Exactly what I said!!!")
