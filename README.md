@@ -25,8 +25,8 @@ Hits are marked by `X` and mistakes indicated by `O`.
     - The number of Ships is generated according to the size of the field and are placed randomly throughout the field.
     - The player cannot see where the enemy ships are.
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-photo/first.png- Player against the computer
+photo/first.png
+- Player against the computer
 - Accepts user input
 - Maintains scores and has a little name-calling to motivate the player to win.
 
