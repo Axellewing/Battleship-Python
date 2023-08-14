@@ -115,10 +115,8 @@ class Player:
         while check == False:
             print("What row?")
             row = check_all_inputs(size = self.board.size) - 1
-            print(row)
             print("And column is?")
             column = check_all_inputs(size = self.board.size) - 1
-            print(column)
             if self.check_moves(row,column) is False:
                 print("Take some memory pills, it's already been that move.")
                 print(self.moves)
