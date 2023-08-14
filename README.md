@@ -26,8 +26,7 @@ Hits are marked by `X` and mistakes indicated by `O`.
     - The player cannot see where the enemy ships are.
 
 ![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
-
-- Player against the computer
+photo/first.png- Player against the computer
 - Accepts user input
 - Maintains scores and has a little name-calling to motivate the player to win.
 
