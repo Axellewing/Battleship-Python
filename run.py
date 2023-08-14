@@ -6,7 +6,7 @@ class Board:
 
     def __init__(self, size):
         self.size = size
-        self.clean_board()
+        self.clean_board(size)
         self.ships = self.boat_positions()
 
 
