@@ -105,10 +105,13 @@ class Player:
         while check == False:
             print("What row?")
             row = check_all_inputs(size=self.board.size) - 1
+            print(row)
             print("And column is?")
             column = check_all_inputs(size=self.board.size) - 1
-            if [row,column] in self.moves:
+            print(column)
+            if self.check_moves(row,column) is False:
                 print("Take some memory pills, it's already been that move.")
+                print(self.moves)
             else:
                 new_move = [row,column]
                 self.moves.append(new_move)
@@ -121,6 +124,7 @@ class Player:
             print(f"{self.name} try to not lose")
 
 class Computer(Player):
+    moves = []
     def move(self):
         check = False
         prev_points = self.points
@@ -128,7 +132,7 @@ class Computer(Player):
         while check == False:
             row = randrange(self.board.size)
             column = randrange(self.board.size)
-            if [row,column] in self.moves:
+            if self.check_moves(row,column) is False:
                 continue
             else:
                 new_move = [row,column]
@@ -171,15 +175,17 @@ Here is your board:''')
         player.move()
         player.show_board()
         player.show_points()
+        if player.points == SIZE:
+            print("WHAT??? It's mistake... Okay SEE you next time!!!")
+            the_end = True
+            break
         computer.move()
         computer.show_points()
         computer.show_board()
-        if player.show_points() == SIZE:
-            print("WHAT??? It's mistake... Okay SEE you next time!!!")
-            the_end = True
-        if computer.show_points() == SIZE:
+        if computer.points == SIZE:
             print("Exactly what I said!!!")
             the_end = True
+            break
     
 
 
