@@ -119,7 +119,6 @@ class Player:
             column = check_all_inputs(size = self.board.size) - 1
             if self.check_moves(row,column) is False:
                 print("Take some memory pills, it's already been that move.")
-                print(self.moves)
             else:
                 new_move = [row,column]
                 self.moves.append(new_move)
@@ -185,7 +184,6 @@ Here is your board:''')
         player.show_points()
         computer.show_points()
         player.move()
-        player.show_board()
         if player.points == SIZE:
             print("WHAT??? It's mistake... Okay SEE you next time!!!")
             the_end = True
@@ -196,7 +194,6 @@ Here is your board:''')
             print("Exactly what I said!!!")
             the_end = True
             break
-    
 
 
     
