@@ -1,4 +1,3 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
 
 # ULTIMATE Battleships
 
@@ -29,7 +28,7 @@ Hits are marked by `X` and mistakes indicated by `O`.
 - Accepts user input
 - Maintains scores and has a little name-calling to motivate the player to win.
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](photo/second.png)
 
 - Input validation and error-chekcing
     - You cannot enter coordinates outside the size of the grid
