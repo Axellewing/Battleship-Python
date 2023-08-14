@@ -3,14 +3,16 @@ from random import randrange
 class Board:
     board = []
 
+
     def __init__(self, size):
         self.size = size
         self.clean_board()
         self.ships = self.boat_positions()
 
 
-    def clean_board(self):
-        self.board = [['_' for _ in range(self.size)] for _ in range(self.size)]
+    def clean_board(self, size):
+        self.board = [['_' for _ in range(size)] for _ in range(size)]
+
 
     def actions_on_board(self,row,column):
         if [row,column] in self.ships:
@@ -25,8 +27,8 @@ class Board:
         for ship in self.ships:
             self.board[ship[0]][ship[1]] = "."
         self.print_board()
-        self.clean_board()
-        
+        self.clean_board(size = self.size)        
+
 
     def boat_positions(self):
         boats = []
@@ -53,6 +55,7 @@ class Board:
                 row += f"{self.board[x][y]} "
             print(row)
 
+
 def check_all_inputs(size_check = False, size = 0):
     ok = "n"
 
@@ -76,12 +79,16 @@ class Player:
     moves = []
     apponent_board = []
     points = 0
+
+
     def __init__(self, name, size):
         self.name = name
         self.board = Board(size)
-    
+
+
     def add_apponent_board(self,apponent_board):
         self.apponent_board = apponent_board
+
 
     def show_board(self, what_to_see = 0):
         if what_to_see == 0:
@@ -89,8 +96,10 @@ class Player:
         else:
             self.board.where_ships()
 
+
     def show_points(self):
         print(f"{self.name}: {self.points}")
+
 
     def check_moves(self,row,column):
         for move in self.moves:
@@ -98,16 +107,17 @@ class Player:
                 return False
         return True
 
+
     def move(self):
         check = False
         prev_points = self.points
         new_move = []
         while check == False:
             print("What row?")
-            row = check_all_inputs(size=self.board.size) - 1
+            row = check_all_inputs(size = self.board.size) - 1
             print(row)
             print("And column is?")
-            column = check_all_inputs(size=self.board.size) - 1
+            column = check_all_inputs(size = self.board.size) - 1
             print(column)
             if self.check_moves(row,column) is False:
                 print("Take some memory pills, it's already been that move.")
@@ -117,14 +127,17 @@ class Player:
                 self.moves.append(new_move)
                 check = True
         self.points += self.apponent_board.actions_on_board(row,column)
-        print(f"{self.name} guessed: {[new_move[0]+1,new_move[1]+1]}")
+        print(f"{self.name} guessed: {[new_move[0] + 1,new_move[1] + 1]}")
         if prev_points == self.points:
             print(f"{self.name} miss")
         else:
             print(f"{self.name} try to not lose")
 
+
 class Computer(Player):
     moves = []
+
+
     def move(self):
         check = False
         prev_points = self.points
@@ -139,13 +152,12 @@ class Computer(Player):
                 self.moves.append(new_move)
                 check = True
         self.points += self.apponent_board.actions_on_board(row,column)
-        print(f"{self.name} guessed: {[new_move[0]+1,new_move[1]+1]}")
+        print(f"{self.name} guessed: {[new_move[0] + 1,new_move[1] + 1]}")
         if prev_points == self.points:
             print(f"{self.name} miss")
         else:
             print(f"{self.name} got you!")
                    
-
 
 if __name__ == "__main__":
     print('''--------------------------------
@@ -166,7 +178,7 @@ Here is your board:''')
     computer = Computer("WINNER-Comp",SIZE)
     computer.add_apponent_board(player.board)
     player.add_apponent_board(computer.board)
-    player.show_board(what_to_see=1)
+    player.show_board(what_to_see = 1)
     print("Computer board:")
     computer.show_board()
 
